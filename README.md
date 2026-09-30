@@ -1,2 +1,27 @@
-# Ngativ-Profit-Calculator
-A modern and responsive business profit calculator for analyzing real profit, margins, costs, commissions, taxes, and custom expenses.
+# Ngativ Image Optimizer
+
+یک ابزار کاملاً سمت‌کاربر برای کاهش حجم تصاویر قبل از بارگذاری روی سایت.
+
+## ساختار
+- `index.html`
+- `css/style.css`
+- `js/app.js`
+- `assets/logo.png`
+- `assets/mascot.png`
+
+## اجرا
+فقط `index.html` را در مرورگر باز کنید. برای توسعه بهتر، استفاده از Live Server پیشنهاد می‌شود.
+
+## قابلیت‌ها
+- Drag & Drop و انتخاب چندفایلی
+- پردازش داخل مرورگر و بدون ارسال فایل
+- WebP / AVIF / JPEG / PNG
+- تغییر اندازه با حفظ نسبت تصویر
+- کیفیت قابل تنظیم
+- حجم هدف با جستجوی خودکار کیفیت
+- حذف متادیتا از طریق encode مجدد
+- پیش‌نمایش قبل/بعد
+- آمار حجم و درصد صرفه‌جویی
+- دانلود تکی و ZIP بدون وابستگی خارجی
+- ذخیره تنظیمات در LocalStorage
+- پشتیبانی از Paste تصویر از کلیپ‌بورد

@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#10120f" />
+  <title>Ngativ Image Optimizer</title>
+  <link rel="stylesheet" href="./css/style.css" />
+</head>
+<body>
+  <div class="ambient ambient-a"></div>
+  <div class="ambient ambient-b"></div>
+
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-mark"><img src="./assets/logo.png" alt="Ngativ" /></div>
+      <div>
+        <div class="brand-name">Ngativ</div>
+        <div class="brand-sub">Image Optimizer</div>
+      </div>
+    </div>
+    <div class="top-actions">
+      <span class="privacy-pill">
+        <span class="dot"></span>
+        پردازش ۱۰۰٪ داخل مرورگر
+      </span>
+      <button class="icon-btn" id="resetSettingsBtn" title="بازنشانی تنظیمات" aria-label="بازنشانی تنظیمات">↺</button>
+    </div>
+  </header>
+
+  <main class="shell">
+    <section class="hero">
+      <div class="hero-copy">
+        <span class="eyebrow">NEGA<span>•</span>OPTIMIZE</span>
+        <h1>عکس‌های سبک‌تر، سایت سریع‌تر.</h1>
+        <p>عکس‌ها را قبل از بارگذاری برای سایت، بدون افت محسوس کیفیت بهینه کن؛ چندفایلی، سریع و بدون ارسال فایل به سرور.</p>
+        <div class="hero-chips">
+          <span>WebP</span><span>AVIF</span><span>JPEG</span><span>PNG</span><span>Batch</span>
+        </div>
+      </div>
+      <div class="mascot-wrap">
+        <div class="mascot-glow"></div>
+        <img src="./assets/mascot.png" alt="Ngativ mascot" class="mascot" />
+        <div class="mascot-tag">
+          <span>نگاتیو پیشنهاد می‌کند</span>
+          <strong>برای وب، کیفیت ۷۵–۸۵٪</strong>
+        </div>
+      </div>
+    </section>
+
+    <section class="workspace">
+      <aside class="settings panel">
+        <div class="panel-head">
+          <div>
+            <span class="panel-kicker">تنظیمات خروجی</span>
+            <h2>بهینه‌سازی حرفه‌ای</h2>
+          </div>
+          <span class="status-chip" id="formatSupport">AVIF در حال بررسی…</span>
+        </div>
+
+        <div class="field">
+          <label for="format">فرمت خروجی</label>
+          <select id="format">
+            <option value="webp">WebP — پیشنهاد اصلی</option>
+            <option value="avif">AVIF — حجم کمتر، سازگاری وابسته به مرورگر</option>
+            <option value="jpeg">JPEG — مناسب تصاویر بدون شفافیت</option>
+            <option value="png">PNG — مناسب شفافیت و گرافیک</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <div class="field-row">
+            <label for="quality">کیفیت</label>
+            <output id="qualityOut">82%</output>
+          </div>
+          <input type="range" id="quality" min="10" max="100" value="82" />
+          <div class="range-labels"><span>سبک‌تر</span><span>باکیفیت‌تر</span></div>
+        </div>
+
+        <div class="field">
+          <label>حداکثر ابعاد</label>
+          <div class="two-inputs">
+            <input id="maxW" type="number" min="200" max="10000" value="1800" placeholder="عرض" />
+            <input id="maxH" type="number" min="200" max="10000" value="1800" placeholder="ارتفاع" />
+          </div>
+          <div class="hint">تصویر بزرگ‌تر کوچک می‌شود؛ تصویر کوچک‌تر بزرگ نمی‌شود.</div>
+        </div>
+
+        <div class="field target-field">
+          <div class="field-row">
+            <label>حالت حجم هدف</label>
+            <label class="switch">
+              <input type="checkbox" id="targetToggle" />
+              <span></span>
+            </label>
+          </div>
+          <div class="target-inline">
+            <input id="targetKB" type="number" min="20" max="5000" value="220" />
+            <span>KB</span>
+          </div>
+          <div class="hint">برای WebP / AVIF / JPEG، کیفیت را خودکار برای نزدیک‌شدن به حجم هدف تنظیم می‌کند.</div>
+        </div>
+
+        <div class="field">
+          <label for="jpegBg">پس‌زمینه JPEG برای تصاویر شفاف</label>
+          <div class="color-row">
+            <input id="jpegBg" type="color" value="#ffffff" />
+            <span id="jpegBgText">#FFFFFF</span>
+          </div>
+        </div>
+
+        <div class="smart-options">
+          <label class="check"><input type="checkbox" id="stripMeta" checked /><span></span> حذف متادیتا برای کاهش حجم</label>
+          <label class="check"><input type="checkbox" id="smartNames" checked /><span></span> افزودن پسوند <code>-optimized</code></label>
+          <label class="check"><input type="checkbox" id="keepFolder" checked /><span></span> حفظ ساختار نام فایل</label>
+        </div>
+
+        <button class="primary-btn" id="optimizeAllBtn">بهینه‌سازی همه</button>
+      </aside>
+
+      <section class="main-area">
+        <div class="dropzone panel" id="dropzone">
+          <input type="file" id="fileInput" accept="image/*" multiple hidden />
+          <div class="drop-icon">↥</div>
+          <h2>عکس‌ها را اینجا بکش و رها کن</h2>
+          <p>یا برای انتخاب چند عکس کلیک کن</p>
+          <div class="drop-meta">
+            <span>PNG</span><span>JPG</span><span>WEBP</span><span>AVIF</span>
+          </div>
+          <button class="ghost-btn" id="chooseBtn">انتخاب فایل</button>
+          <div class="paste-tip">نکته: اسکرین‌شات یا تصویر کپی‌شده را هم می‌توانی با <kbd>Ctrl</kbd> + <kbd>V</kbd> اضافه کنی.</div>
+        </div>
+
+        <div class="summary-bar panel" id="summaryBar">
+          <div><span>فایل‌ها</span><strong id="fileCount">۰</strong></div>
+          <div><span>حجم اولیه</span><strong id="beforeSize">۰ KB</strong></div>
+          <div><span>حجم خروجی</span><strong id="afterSize">—</strong></div>
+          <div><span>صرفه‌جویی</span><strong id="savedSize">—</strong></div>
+          <button class="danger-btn" id="clearBtn">پاک‌کردن صف</button>
+        </div>
+
+        <div class="queue" id="queue">
+          <div class="empty-state">
+            <div class="empty-orb">◌</div>
+            <h3>هنوز تصویری اضافه نشده</h3>
+            <p>با چند فایل شروع کن؛ نتیجه و درصد فشرده‌سازی همین‌جا نمایش داده می‌شود.</p>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <section class="tips">
+      <div class="tip-card">
+        <span>01</span><div><strong>برای عکس محصول</strong><p>WebP با کیفیت ۸۰–۸۵٪ و عرض حدود ۱۴۰۰ تا ۱۸۰۰ پیکسل.</p></div>
+      </div>
+      <div class="tip-card">
+        <span>02</span><div><strong>برای Hero سایت</strong><p>عرض ۱۶۰۰–۲۰۰۰ پیکسل معمولاً کافی است؛ بیشتر از این فقط وقتی واقعاً لازم است.</p></div>
+      </div>
+      <div class="tip-card">
+        <span>03</span><div><strong>برای لوگو و آیکون</strong><p>هرجا ممکن است SVG استفاده کن؛ برای شفافیت، PNG/WebP انتخاب کن.</p></div>
+      </div>
+    </section>
+  </main>
+
+  <template id="itemTemplate">
+    <article class="image-card panel">
+      <div class="thumb-wrap">
+        <div class="thumb-bg"></div>
+        <img class="thumb" alt="" />
+        <div class="thumb-badge">ORIGINAL</div>
+      </div>
+      <div class="image-info">
+        <div class="image-title-row">
+          <div class="name-block">
+            <strong class="file-name"></strong>
+            <span class="file-dimensions"></span>
+          </div>
+          <span class="item-status status-waiting">در صف</span>
+        </div>
+        <div class="progress"><span></span></div>
+        <div class="stats-row">
+          <div><small>اصلی</small><strong class="orig-size"></strong></div>
+          <div><small>خروجی</small><strong class="out-size">—</strong></div>
+          <div><small>صرفه‌جویی</small><strong class="saving">—</strong></div>
+        </div>
+        <div class="card-actions">
+          <button class="small-btn preview-btn">مقایسه</button>
+          <button class="small-btn download-btn" disabled>دانلود</button>
+        </div>
+      </div>
+    </article>
+  </template>
+
+  <div class="modal" id="previewModal" aria-hidden="true">
+    <div class="modal-card">
+      <button class="modal-close" id="modalClose">×</button>
+      <div class="modal-head">
+        <div><span class="panel-kicker">Preview</span><h3 id="modalTitle">مقایسه تصویر</h3></div>
+        <div class="modal-stats" id="modalStats"></div>
+      </div>
+      <div class="compare-grid">
+        <div class="compare-pane"><span>قبل</span><img id="beforeImg" alt="" /></div>
+        <div class="compare-pane"><span>بعد</span><img id="afterImg" alt="" /></div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div><img src="./assets/logo.png" alt="" /> <span>ساخته‌شده با نگاه متفاوتِ نگاتیو</span></div>
+    <span>بدون آپلود فایل به سرور</span>
+  </footer>
+
+  <script src="./js/app.js"></script>
+</body>
+</html>
